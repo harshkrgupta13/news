@@ -1,0 +1,19 @@
+<div class="container">
+<span class="row align-center"> News Headlines</span>
+<div class="row">
+<div class="card" *ngFor="let source of Sources" >
+    <span class="card-header" (click)="searchArticles(source.id);saveArticle(source.id)" > {{source.name}}</span>
+</div>
+<div class="card article" *ngFor="let article of Articles">
+    <div class="card-header">{{article.source.name}}</div>
+    <div class="card-header">{{article.title}}
+    </div>
+    <p class="class-body">
+        {{article.description}}
+    </p>
+    <a href={{article.url}}> More</a>
+</div>
+</div>
+</div>
+
+

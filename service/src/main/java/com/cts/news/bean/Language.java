@@ -18,6 +18,9 @@ public class Language {
 	
 	@Column(name = "la_name")
 	private String name;
+	
+	@Column(name = "la_code")
+	private String languageCode;
 
 	public Language(int id, String name) {
 		super();
@@ -44,5 +47,13 @@ public class Language {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
+	public String getLanguageCode() {
+		return languageCode;
+	}
+
+	public void setLanguageCode(String languageCode) {
+		this.languageCode = languageCode;
+	}
+		
 }

@@ -42,10 +42,10 @@ public class User {
 	@JoinColumn(name = "us_la_id")
 	private Language language;
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	/*@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinTable(name = "favourite_article", joinColumns = { @JoinColumn(name = "fa_us_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "fa_ar_id") })
-	private List<Article> article; 	
+	private List<Article> article; 	*/
 
 	public User(int id, String name, String email, String password, Role role, Language language,
 			List<Article> article) {
@@ -56,7 +56,7 @@ public class User {
 		this.password = password;
 		this.role = role;
 		this.language = language;
-		this.article = article;
+		
 	}
 	
 	public User(){
@@ -111,12 +111,18 @@ public class User {
 		this.language = language;
 	}
 
-	public List<Article> getArticle() {
+	/*public List<Article> getArticle() {
 		return article;
 	}
 
 	public void setArticle(List<Article> article) {
 		this.article = article;
-	}
+	}*/
 
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", role=" + role
+				+ ", language=" + language + "]";
+	}
+	
 }
