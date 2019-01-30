@@ -7,6 +7,5 @@ import com.cts.news.bean.Article;
 
 public interface ArticleRepository extends JpaRepository<Article, Integer> {
 
-	void save(@Param(value="ar_source") String source);
 
 }

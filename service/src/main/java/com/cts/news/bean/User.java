@@ -34,6 +34,9 @@ public class User {
 	@Column(name = "us_password")
 	private String password;
 	
+	@Column(name = "us_blacklisted")
+	private Boolean blacklisted;
+	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "us_ur_id")
 	private Role role;
@@ -42,23 +45,26 @@ public class User {
 	@JoinColumn(name = "us_la_id")
 	private Language language;
 	
-	/*@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-	@JoinTable(name = "favourite_article", joinColumns = { @JoinColumn(name = "fa_us_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "fa_ar_id") })
-	private List<Article> article; 	*/
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "favourite_article", joinColumns = { @JoinColumn(name = "fa_ar_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "fa_us_id") })
+	private List<Article> article;
+	
+	
 
-	public User(int id, String name, String email, String password, Role role, Language language,
+	public User(int id, String name, String email, String password, Boolean blacklisted, Role role, Language language,
 			List<Article> article) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.password = password;
+		this.blacklisted = blacklisted;
 		this.role = role;
 		this.language = language;
-		
+		this.article = article;
 	}
-	
+
 	public User(){
 		
 	}
@@ -93,6 +99,16 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+		
+	}
+	
+
+	public Boolean getBlacklisted() {
+		return blacklisted;
+	}
+
+	public void setBlacklisted(Boolean blacklisted) {
+		this.blacklisted = blacklisted;
 	}
 
 	public Role getRole() {
@@ -111,18 +127,18 @@ public class User {
 		this.language = language;
 	}
 
-	/*public List<Article> getArticle() {
+	public List<Article> getArticle() {
 		return article;
 	}
 
 	public void setArticle(List<Article> article) {
 		this.article = article;
-	}*/
+	}
 
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", role=" + role
-				+ ", language=" + language + "]";
+				+ ", language=" + language + ", article=" + article + "]";
 	}
-	
+
 }

@@ -28,12 +28,17 @@ public class Article {
 	@Column(name = "ar_url")
 	private String url;
 	
-	@Column(name = "ar_urlToImage")
+	@Column(name = "ar_url_to_image")
 	private String urlToImage;
 	
 	@Column(name = "ar_content")
 	private String content;
+	
+	/*@Column(name = "ar_source")
+	private String source;*/
 
+	
+	
 	public Article(int id, String author, String title, String description, String url, String urlToImage,
 			String content) {
 		super();
@@ -44,8 +49,9 @@ public class Article {
 		this.url = url;
 		this.urlToImage = urlToImage;
 		this.content = content;
+
 	}
-	
+
 	public Article(){
 		
 	}
@@ -105,7 +111,13 @@ public class Article {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
-	
+
+
+
+	@Override
+	public String toString() {
+		return "Article [id=" + id + ", author=" + author + ", title=" + title + ", description=" + description
+				+ ", url=" + url + ", urlToImage=" + urlToImage + ", content=" + content + "]";
+	}
 	
 }

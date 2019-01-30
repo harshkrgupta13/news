@@ -5,6 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -73,5 +75,26 @@ public class UserController {
 		LOGGER.info("End");
 		return new ResponseEntity<AuthenticationStatus>(status, HttpStatus.OK);
 	}
+	
+	@GetMapping("/analyst/{email}")
+	public User findEmployeeList(@PathVariable String email) {
+		LOGGER.info(" START");
+		User user = new User();
+		user = userService.findAnalyst(email);
+		LOGGER.debug("employee : {} ", user);
+		LOGGER.info("END");
+		return user;
+
+	}
+
+	@GetMapping("/saveuser/{email}")
+	public User saveAnalyst(@PathVariable String email) {
+		LOGGER.info("email");
+		User user = userService.saveAnalystStatus(email);
+
+		LOGGER.info("seat");
+		return user;
+	}
+	
 
 }

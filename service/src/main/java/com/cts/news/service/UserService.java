@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cts.news.bean.Language;
 import com.cts.news.bean.Role;
 import com.cts.news.bean.SignupStatus;
 import com.cts.news.bean.User;
@@ -31,10 +30,6 @@ public class UserService {
 		Role role = new Role();
 		role.setId(2);
 		user.setRole(role);
-		Language language = new Language();
-		language.setId(1);
-		user.setLanguage(language);
-		
 		LOGGER.info("Start");
 		signupStatus.setSignupStatus(false);
 		LOGGER.debug("SignupStatus :{}", signupStatus);
@@ -50,6 +45,41 @@ public class UserService {
 		LOGGER.debug("Email: {}", email);
 		LOGGER.info("End");
 		return userRepository.findByEmail(email);
+	}
+	
+	@Transactional
+	public User findAnalyst(String email) {
+		LOGGER.info("START");
+		
+		User user = userRepository.findByEmail(email);
+		if(user.getRole().getId()==2) {
+		LOGGER.debug("list of total no of question for each subject contributed : {} ", user);
+		LOGGER.info("END");
+		return user;
+		}
+		else
+			return null;
+
+	}
+	
+	@Transactional
+	public User saveAnalystStatus(String email) {
+		User user=userRepository.findByEmail(email);
+		LOGGER.info("email");
+		if(user.getRole().getId()==2) {
+		if(user.getBlacklisted())
+		{
+			user.setBlacklisted(false);
+		}else {
+			user.setBlacklisted(true);
+		}
+		userRepository.save(user);
+ 
+		return userRepository.findByEmail(email);
+	}
+	
+	else
+		return null;
 	}
 
 	

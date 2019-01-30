@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4 col-sm-12 card c1">
+      <h2> Search News Analyst</h2>
+
+
+      <input type="text" class="form-control" placeholder="Search" #email/><br>
+      <button class="btn btn-primary bt" type="button" (click)="get(email.value)"> Search </button>
+
+    </div>
+  </div>
+  <br>
+
+  <div *ngIf="isUser==true">
+    <div class="col-lg-4 card c1" *ngIf="analyst1.blacklisted">
+      <div class="card-body">
+
+        <h5> Name : {{analyst1.name}} </h5>
+        <h5> Email : {{analyst1.email}} </h5>
+        <h5> Language : {{analyst1.language.name}}</h5>
+        <h5> Blacklisted : {{analyst1.blacklisted}}</h5>
+        <button class="btn btn-danger" (click)="changeStatus(analyst1.email)"> Blacklisted </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 card c1" *ngIf="!analyst1.blacklisted">
+
+    <div class="card-body">
+      <h5> Name : {{analyst1.name}} </h5>
+      <h5> Email : {{analyst1.email}} </h5>
+      <h5> Language : {{analyst1.language.name}}</h5>
+      <h5> Blacklisted : {{analyst1.blacklisted}}</h5>
+      <button class="btn btn-success" (click)="changeStatus(analyst1.email)"> Blacklisted  </button>
+    </div>
+  </div>
+</div>

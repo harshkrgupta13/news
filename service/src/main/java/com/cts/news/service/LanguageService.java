@@ -14,13 +14,17 @@ import com.cts.news.repository.LanguageRepository;
 @Service
 public class LanguageService {
 
-	private static final Logger logger = LoggerFactory.getLogger(ArticleService.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(LanguageService.class);
+	
 	@Autowired
 	private LanguageRepository languageRepository;
+
 	@Transactional
-	public List<Language> getLanguages(Language language){
-		logger.debug("Languages from database :{}",languageRepository.findAll());
+	public List<Language> getLanguages(Language language) {
+		LOGGER.info("Start");
+		LOGGER.debug("Languages from database :{}", languageRepository.findAll());
+		LOGGER.info("End");
 		return languageRepository.findAll();
 	}
-	
+
 }

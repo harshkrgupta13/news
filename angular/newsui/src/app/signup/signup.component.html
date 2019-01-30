@@ -1,69 +1,37 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-4"></div>
-    <div class="col-lg-4">
-      <div id="signupbox" style="margin-top:140px;">
-        <div class="panel panel-info">
-          <div class="panel-heading">
-            <div class="panel-title">Sign Up</div>
-            <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" [routerLink]="['/login']">Login</a></div>
+    <div class="col-lg-4 card">
+     
+        <h2>Signup</h2>
+
+        <form [formGroup]="form">
+          <div class="form-group">
+            <input type="text" class="form-control" formControlName="name" placeholder="Enter Name">
           </div>
-          <div class="panel-body">
-            <form id="signupform" class="form-horizontal" role="form">
 
-              <div id="signupalert" style="display:none" class="alert alert-danger">
-                <p>Error:</p>
-                <span></span>
-              </div>
+          <div class="form-group">
+            <input type="text" class="form-control" formControlName="email" placeholder="Enter Email">
+          </div>
 
-              <form [formGroup]="form">
-                <div class="form-group">
-                  <label for="name" class="col-md-3 control-label">Name</label>
-                  <div class="col-md-9">
-                    <input type="text" class="form-control" formControlName="name" placeholder="Enter Name">
-                  </div>
-                </div>
+          <div class="form-group">
+            <input type="password" class="form-control" formControlName="password" placeholder="Enter Password">
+          </div>
 
-                <div class="form-group">
-                  <label for="email" class="col-md-3 control-label">Email</label>
-                  <div class="col-md-9">
-                    <input type="text" class="form-control" formControlName="email" placeholder="Enter Email">
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="password" class="col-md-3 control-label">Password</label>
-                  <div class="col-md-9">
-                    <input type="password" class="form-control" formControlName="password" placeholder="Enter Password">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="language" class="col-md-3 control-label">Language</label>
-                  <select formControlName="language"  placeholder="Select Language">
+          <div class="form-group">
+            <select class="form-control" formControlName="language" placeholder="Select Language">
                         <option *ngFor="let language of languages" value={{language.id}}>{{language.name}}
                         </option>
                     </select>
-                </div>
-
-                <div class="form-group">
-                  <!-- Button -->
-                  <div class="col-md-offset-3 col-md-9">
-                    <button id="btn-signup" type="button" class="btn btn-info" (click)="signup();"> Sign Up</button>
-
-                  </div>
-                </div>
-              </form>
-
-
-
-            </form>
           </div>
-        </div>
 
+          <div class="form-group">
+            <button id="btn-signup" type="button" class="btn btn-info" (click)="signup();"> Sign Up</button>
+            <button id="btn-login" type="button" class="btn btn-success" [routerLink]="['/login']"> Login</button>
+          </div>
 
-
-
-      </div>
+        </form>
+    
     </div>
     <div class="col-lg-4"></div>
   </div>

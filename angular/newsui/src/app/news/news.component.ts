@@ -2,38 +2,42 @@ import { Component, OnInit } from '@angular/core';
 import { NewsApiService } from '../news-api.service';
 import { LoginComponent } from '../login/login.component';
 
-
-
 @Component({
   selector: 'app-news',
   templateUrl: './news.component.html',
   styleUrls: ['./news.component.css']
 })
+
 export class NewsComponent implements OnInit {
 
-  Articles:any[];
-  Sources:any[];
-  ngOnInit() {
-    
-    //load news sources
-    this.newsApi.initSources().subscribe(
-      data=> this.Sources = data['sources']
-    );  
-  }
-  constructor(private newsApi: NewsApiService) {}
+languageCode:any;
+ articleList: any[];
+  articles: any;
+favouriteArticle: any;
  
-  searchArticles(source){
-    console.log("selected source is: "+source);
-    this.newsApi.getArticlesByID(source)
-    .subscribe(
-      data =>
-       this.Articles = data['articles']
-    );
+  ngOnInit() {
+      this.newsApi.initSources().subscribe(data => {
+      console.log(data)
+      this.articleList = data.articles;
+    })
   }
-  saveArticle(source){
-    console.log("selected source is: "+source);
-    this.newsApi.saveArticle(source);
-  }
+  
+  constructor(private newsApi: NewsApiService) {}
 
+  saveArticle(articleTitle) {
+    //console.log(articleTitle);
+    this.articleList.forEach(favouriteArticle => {
 
+      // console.log(element.title);
+      if (favouriteArticle.title == articleTitle) {
+        console.log(favouriteArticle.title);
+        // console.log(favoriteArticle)
+
+        this.newsApi.saveArticle(favouriteArticle).subscribe(data => {
+          this.favouriteArticle = data;
+          console.log(this.favouriteArticle);
+        })
+      }});
+ }
+ 
 }

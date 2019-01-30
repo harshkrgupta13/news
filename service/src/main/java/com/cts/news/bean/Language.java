@@ -55,5 +55,11 @@ public class Language {
 	public void setLanguageCode(String languageCode) {
 		this.languageCode = languageCode;
 	}
+
+	@Override
+	public String toString() {
+		return "Language [id=" + id + ", name=" + name + ", languageCode=" + languageCode + "]";
+	}
 		
+	
 }
