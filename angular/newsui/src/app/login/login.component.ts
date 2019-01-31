@@ -12,7 +12,8 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public router: Router, public loginService: LoginService, private newsApi: NewsApiService, private service: AuthService) { }
+  constructor(public router: Router, public loginService: LoginService, 
+  private newsApi: NewsApiService, private service: AuthService) { }
 
   languageCode: any;
   form = new FormGroup({
@@ -42,12 +43,14 @@ export class LoginComponent implements OnInit {
           this.service.login();
           this.languageCode = data.user.language.languageCode;
           this.newsApi.languageCode = this.languageCode;
+          this.service.setUserId(data.user.id);
           this.languageCode = this.service.setLanguageCode(this.languageCode);
           console.log(this.newsApi.languageCode)
           this.router.navigate(['/searchnews']);
 
         }
         if (data.user.role.id == 1) {
+          this.service.login();
           this.router.navigate(['/search']);
         }
 

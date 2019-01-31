@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsApiService } from '../news-api.service';
-import { LoginComponent } from '../login/login.component';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-news',
@@ -10,34 +10,63 @@ import { LoginComponent } from '../login/login.component';
 
 export class NewsComponent implements OnInit {
 
-languageCode:any;
- articleList: any[];
+  id:any;
+  languageCode: any;
+  articleList: any[];
   articles: any;
-favouriteArticle: any;
- 
+  favouriteArticle: any;
+  favoriteArticleId:any;
+
   ngOnInit() {
-      this.newsApi.initSources().subscribe(data => {
+       this.id=this.service.getUserId()
+       console.log(this.id);
+    this.newsApi.initSources().subscribe(data => {
       console.log(data)
       this.articleList = data.articles;
     })
   }
-  
-  constructor(private newsApi: NewsApiService) {}
 
-  saveArticle(articleTitle) {
-    //console.log(articleTitle);
+  constructor(private newsApi: NewsApiService,private service : AuthService) { }
+
+ /* saveArticle(articleTitle) {
+
     this.articleList.forEach(favouriteArticle => {
 
-      // console.log(element.title);
+
       if (favouriteArticle.title == articleTitle) {
         console.log(favouriteArticle.title);
-        // console.log(favoriteArticle)
+
 
         this.newsApi.saveArticle(favouriteArticle).subscribe(data => {
           this.favouriteArticle = data;
           console.log(this.favouriteArticle);
         })
-      }});
+      }
+    });
+  }
+*/
+
+ saveArticle(articleTitle) {
+    //console.log(articleTitle);
+    this.articleList.forEach(favoriteArticle => {
+  // console.log(element.title);
+      if (favoriteArticle.title == articleTitle) {
+        console.log(favoriteArticle.title);
+        // console.log(favoriteArticle)
+
+        let user=JSON.stringify({
+           id:this.service.getUserId(),
+           article:[favoriteArticle]
+         })
+         console.log(user);
+           console.log(this.id);
+         
+        this.newsApi.saveArticle(user).subscribe(data => {
+          this.favoriteArticleId = data;
+          console.log(this.favoriteArticleId);
+          })
+      }
+    });
  }
- 
+
 }

@@ -14,8 +14,10 @@ const httpOptions = {
 })
 export class NewsApiService {
 
- /* sourceUrl: string = "/news-service/saveSource";*/
- savefavoriteArticleUrl = "/news-service/saveArticle"
+  /* sourceUrl: string = "/news-service/saveSource";*/
+  savefavoriteArticleUrl = "/news-service/saveArticle"
+  getUserUrl = "/news-service/user/"
+
   languageCode: any;
   code: any;
 
@@ -28,11 +30,17 @@ export class NewsApiService {
     return this.http.get('https://newsapi.org/v2/top-headlines?language=' + this.code + '&apiKey=' + this.api_key);
   }
 
- 
+
   saveArticle(favoriteArticle) {
     console.log("inside save article service")
     //console.log("favoriteArticle"+favoriteArticle);
     return this.http.post(this.savefavoriteArticleUrl, favoriteArticle, httpOptions)
+
+  }
+
+  getUser(id): Observable<any> {
+    console.log(id);
+    return this.http.get(this.getUserUrl + id);
 
   }
 

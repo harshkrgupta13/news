@@ -7,5 +7,6 @@ import com.cts.news.bean.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, String>{
+	public User findById(int id);
 	public User findByEmail(String email);
 }

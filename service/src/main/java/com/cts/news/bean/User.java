@@ -46,8 +46,8 @@ public class User {
 	private Language language;
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "favourite_article", joinColumns = { @JoinColumn(name = "fa_ar_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "fa_us_id") })
+	@JoinTable(name = "favourite_article", joinColumns = { @JoinColumn(name = "fa_us_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "fa_ar_id") })
 	private List<Article> article;
 	
 	

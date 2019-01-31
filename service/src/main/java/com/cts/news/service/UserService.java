@@ -30,6 +30,7 @@ public class UserService {
 		Role role = new Role();
 		role.setId(2);
 		user.setRole(role);
+		user.setBlacklisted(false);
 		LOGGER.info("Start");
 		signupStatus.setSignupStatus(false);
 		LOGGER.debug("SignupStatus :{}", signupStatus);

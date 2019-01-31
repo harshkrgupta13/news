@@ -7,6 +7,8 @@ export class AuthService {
 
   languageCode:any;
   loggedIn :  boolean = false;
+  id:any;
+
   constructor() { }
 
   login() {
@@ -26,4 +28,13 @@ export class AuthService {
    setLanguageCode(languageCode:string){
        this.languageCode=languageCode;
     }
+
+    getUserId() {
+    return this.id;
+    }
+
+    setUserId(id:number) {
+    this.id = id;
+   }
+ 
 }
