@@ -6,8 +6,8 @@
         <div class="card-header">
           {{article.title}}
           <span class="icon">
-            <i class="fas fa-star" (click)="saveArticle(article.title)"></i>
             <button class="btn btn-primary" (click)="saveArticle(article.title)">Add Article as Favourite</button>
+            
           </span>
         </div>
         <div class="card-body">
@@ -23,7 +23,7 @@
 
 
           </div>
-          <!-- <a href= "http://www.sys-con.com/node/4371031" class="btn btn-primary">Go somewhere</a>-->
+
         </div>
         <div class="card-footer text-muted">
           <p class="card-title">{{article.author}} </p>{{article.publishedAt}}

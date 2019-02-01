@@ -1,5 +1,7 @@
 package com.cts.news.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
@@ -22,45 +24,52 @@ public class ArticleService {
 	@Autowired
 	private UserRepository userRepository;
 
-	/*
-	 * @Transactional public int saveArticle(Article article) {
-	 * LOGGER.info("Start"); LOGGER.debug("saveArticle {}", article);
-	 * articleRepository.save(article); int id=article.getId();
-	 * LOGGER.info("End"); return id;
-	 * 
-	 * }
-	 */
-
 	@Transactional
 	public void saveArticle(User user) {
 		LOGGER.info("Start");
+
 		Article article = user.getArticle().get(0);
 		String title = article.getTitle();
-		int id = 0;
 		Article actualArticle = articleRepository.findBytitle(title);
-		// System.out.println(article);
+
 		LOGGER.debug("article  {}", article);
 		User actualUser = userRepository.findById(user.getId());
 
 		if (actualArticle == null) {
-			articleRepository.save(article);
-			id = article.getId();
+			actualArticle = articleRepository.save(article);
+
 		}
-		LOGGER.debug("id {}", id);
-		LOGGER.debug("article  {}", article);
-		if (id != 0) {
-			LOGGER.debug("users fav article  {}", actualUser.getArticle());
-			actualUser.getArticle().add(article);
+		LOGGER.debug("id {}", actualArticle.getId());
+
+		if (actualArticle.getId() != 0) {
+			LOGGER.debug("Users favourite article  {}", actualUser.getArticle());
+			actualUser.getArticle().add(actualArticle);
 			userRepository.save(actualUser);
-
 		}
-
 		LOGGER.info("End");
 	}
 
 	@Transactional
 	public User getUser(int id) {
 		return userRepository.findById(id);
+
+	}
+	
+	@Transactional
+	public void deleteArticle(User user) {
+		LOGGER.info("Start");
+		User actualUser = userRepository.findById(user.getId());
+		String title1 = user.getArticle().get(0).getTitle();
+		List<Article> articles = actualUser.getArticle();
+		LOGGER.debug("Users favourite article  {}", actualUser.getArticle());
+		LOGGER.debug("User articles  {}", title1);
+		for (int i = 0; i < articles.size(); i++) {
+			if (articles.get(i).getTitle().equals(title1)) {
+				articles.remove(articles.get(i));
+				actualUser.setArticle(articles);
+			}
+		}
+		userRepository.save(actualUser);
 
 	}
 }

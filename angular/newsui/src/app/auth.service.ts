@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class AuthService {
 
   languageCode:any;
-  loggedIn :  boolean = false;
+  loggedIn : boolean;
   id:any;
 
   constructor() { }

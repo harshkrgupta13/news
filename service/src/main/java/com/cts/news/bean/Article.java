@@ -15,30 +15,25 @@ public class Article {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ar_id")
 	private int id;
-	
+
 	@Column(name = "ar_author")
 	private String author;
-	
+
 	@Column(name = "ar_title")
 	private String title;
-	
+
 	@Column(name = "ar_description")
 	private String description;
-	
+
 	@Column(name = "ar_url")
 	private String url;
-	
+
 	@Column(name = "ar_url_to_image")
 	private String urlToImage;
-	
+
 	@Column(name = "ar_content")
 	private String content;
-	
-	/*@Column(name = "ar_source")
-	private String source;*/
 
-	
-	
 	public Article(int id, String author, String title, String description, String url, String urlToImage,
 			String content) {
 		super();
@@ -52,8 +47,8 @@ public class Article {
 
 	}
 
-	public Article(){
-		
+	public Article() {
+
 	}
 
 	public int getId() {
@@ -112,12 +107,10 @@ public class Article {
 		this.content = content;
 	}
 
-
-
 	@Override
 	public String toString() {
 		return "Article [id=" + id + ", author=" + author + ", title=" + title + ", description=" + description
 				+ ", url=" + url + ", urlToImage=" + urlToImage + ", content=" + content + "]";
 	}
-	
+
 }

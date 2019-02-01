@@ -14,9 +14,9 @@ const httpOptions = {
 })
 export class NewsApiService {
 
-  /* sourceUrl: string = "/news-service/saveSource";*/
   savefavoriteArticleUrl = "/news-service/saveArticle"
   getUserUrl = "/news-service/user/"
+  deletefavoriteArticleUrl = "/news-service/delete"
 
   languageCode: any;
   code: any;
@@ -33,7 +33,6 @@ export class NewsApiService {
 
   saveArticle(favoriteArticle) {
     console.log("inside save article service")
-    //console.log("favoriteArticle"+favoriteArticle);
     return this.http.post(this.savefavoriteArticleUrl, favoriteArticle, httpOptions)
 
   }
@@ -41,7 +40,13 @@ export class NewsApiService {
   getUser(id): Observable<any> {
     console.log(id);
     return this.http.get(this.getUserUrl + id);
+  }
+
+  deleteArticle(favoriteArticle) {
+    console.log("inside delete article service")
+    return this.http.post(this.deletefavoriteArticleUrl, favoriteArticle, httpOptions)
 
   }
+
 
 } 

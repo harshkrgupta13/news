@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-  <a class="navbar-brand txtcolor" [routerLink]="['/searchnews']">News</a>
+  <a class="nav-link a1" [routerLink]="['/searchnews']">News</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
     aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -9,20 +9,17 @@
       <div *ngIf="!service.loggedIn">
         <li class="nav-item">
           <a class="nav-link " [routerLink]="['/login']" class="a1">Login  </a> &nbsp;
+          <a class="nav-link txtcolor" [routerLink]="['/signup']" class="a1"> Signup</a>
         </li>
       </div>
       <div *ngIf="service.loggedIn">
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/searchnews']" class="a1">View Article </a> &nbsp;
           <a class="nav-link" [routerLink]="['/favourite']" class="a1"> View Favourite Articles </a> &nbsp;
-          <a class="nav-link" [routerLink]="['/login']" class="a1"> Logout </a> 
-          </li>
+          <a class="nav-link" [routerLink]="['/login']" class="a1"> Logout </a>
+        </li>
       </div>
-        <div *ngIf="!service.loggedIn">
-      <li class="nav-item">
-        <a class="nav-link txtcolor" [routerLink]="['/signup']" class="a1"> Signup</a>
-      </li>
-        </div>
+
     </ul>
   </div>
 </nav>

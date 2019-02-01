@@ -20,13 +20,6 @@ public class ArticleController {
 	@Autowired
 	private ArticleService articleService;
 
-	/*
-	 * @PostMapping("/saveArticle") private int saveArticle(@RequestBody Article
-	 * article) { LOGGER.info("Start"); System.out.println(article);
-	 * LOGGER.debug("saveArticle {}", article); int id =
-	 * articleService.saveArticle(article); LOGGER.info("End"); return id; }
-	 */
-
 	@PostMapping("/saveArticle")
 	public void saveArticle(@RequestBody User user) {
 		LOGGER.info("Start");
@@ -45,5 +38,12 @@ public class ArticleController {
 		LOGGER.info("END");
 		return user;
 
+	}
+	
+	@PostMapping("/delete")
+	public void deleteArticle(@RequestBody User user) {
+		LOGGER.info("Start");
+		LOGGER.debug("user {}", user);
+		articleService.deleteArticle(user);
 	}
 }

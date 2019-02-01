@@ -50,6 +50,7 @@ export class LoginComponent implements OnInit {
 
         }
         if (data.user.role.id == 1) {
+          console.log(this.service.loggedIn);
           this.service.login();
           this.router.navigate(['/search']);
         }
