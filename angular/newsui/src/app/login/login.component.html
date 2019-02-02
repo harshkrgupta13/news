@@ -7,11 +7,18 @@
       <form [formGroup]="form">
 
         <div class="form-group">
-          <input type="text" class="form-control" name="email" placeholder="Email" #email>
+          <input type="text" class="form-control" id="loginemail" name="email" placeholder="Email" #email>
+          <div *ngIf="form.get('email').touched && form.get('email').invalid">
+            <div *ngIf="form.get('email').errors.required" class="alert alert-danger">Email is mandatory</div>
+          </div>
+
         </div>
 
         <div class="form-group">
-          <input type="password" class="form-control" name="password" placeholder="Password" #password>
+          <input type="password" class="form-control" id="loginpassword" name="password" placeholder="Password" #password>
+          <div *ngIf="form.get('password').touched && form.get('password').invalid">
+            <div *ngIf="form.get('password').errors.required" class="alert alert-danger">Password is mandatory</div>
+          </div>
         </div>
 
         <div>

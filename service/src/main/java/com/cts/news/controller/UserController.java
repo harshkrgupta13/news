@@ -19,7 +19,7 @@ import com.cts.news.service.UserService;
 
 @RestController
 @RequestMapping("/user")
-public class UserController {
+public class UserController extends NewsController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
@@ -66,8 +66,8 @@ public class UserController {
 			} else {
 				actualEmail = actualUser.getEmail();
 				status.setUser(actualUser);
-				status.setAuthenticated(email.equals(actualEmail));
-				status.setAuthenticated(password.equals(actualPassword));
+				status.setAuthenticated(actualEmail.equals(email));
+				status.setAuthenticated(actualPassword.equals(password));
 			}
 		}
 		LOGGER.debug("Value of actualPassword: {} ", actualPassword);

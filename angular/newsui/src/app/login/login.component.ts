@@ -17,8 +17,19 @@ export class LoginComponent implements OnInit {
 
   languageCode: any;
   form = new FormGroup({
-    email: new FormControl(),
-    password: new FormControl()
+    email: new FormControl(
+       'harsh@gmail.com',
+      [ Validators.required,
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'),
+        Validators.maxLength(255),
+      ]
+    ),
+    password: new FormControl(
+      '123456',
+      [ Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(50)]
+    )
   });
 
 

@@ -14,43 +14,50 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "user")
 public class User {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "us_id")
 	private int id;
-	
+
+	@NotNull(message = "User Name cannot be empty")
 	@Column(name = "us_name")
+	@Size(max = 50, message = "Name must not exceed 50 characters")
 	private String name;
-	
+
+	@NotNull(message = "Email cannot be empty")
+	@Size(max = 255, message = "Email must not exceed 255 characters")
+	@Pattern(regexp = ".+@.+\\..+", message = "Email address is invalid")
 	@Column(name = "us_email")
 	private String email;
-	
+
+	@NotNull(message = "Password cannot be empty")
+	@Size(min = 6, max = 50, message = "Password must be 6 to 50 characters")
 	@Column(name = "us_password")
 	private String password;
-	
+
 	@Column(name = "us_blacklisted")
 	private Boolean blacklisted;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "us_ur_id")
 	private Role role;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "us_la_id")
 	private Language language;
-	
+
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "favourite_article", joinColumns = { @JoinColumn(name = "fa_us_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "fa_ar_id") })
 	private List<Article> article;
-	
-	
 
 	public User(int id, String name, String email, String password, Boolean blacklisted, Role role, Language language,
 			List<Article> article) {
@@ -65,8 +72,8 @@ public class User {
 		this.article = article;
 	}
 
-	public User(){
-		
+	public User() {
+
 	}
 
 	public int getId() {
@@ -99,9 +106,8 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
-		
+
 	}
-	
 
 	public Boolean getBlacklisted() {
 		return blacklisted;
