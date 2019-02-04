@@ -6,10 +6,8 @@ import org.springframework.stereotype.Repository;
 import com.cts.news.bean.Article;
 
 @Repository
-public interface ArticleRepository  extends JpaRepository<Article , String>{
+public interface ArticleRepository extends JpaRepository<Article, String> {
 
 	Article findBytitle(String title);
-	
-	
 
 }

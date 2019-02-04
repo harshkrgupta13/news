@@ -5,9 +5,9 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
 
-  languageCode:any;
-  loggedIn : boolean;
-  id:any;
+  languageCode: any;
+  loggedIn: boolean;
+  id: any;
 
   constructor() { }
 
@@ -20,21 +20,21 @@ export class AuthService {
     console.log("Inside auth service logout()");
     this.loggedIn = false;
   }
-    
-  getLanguageCode(){
-    return  this.languageCode;
-   }
- 
-   setLanguageCode(languageCode:string){
-       this.languageCode=languageCode;
-    }
 
-    getUserId() {
+  getLanguageCode() {
+    return this.languageCode;
+  }
+
+  setLanguageCode(languageCode: string) {
+    this.languageCode = languageCode;
+  }
+
+  getUserId() {
     return this.id;
-    }
+  }
 
-    setUserId(id:number) {
+  setUserId(id: number) {
     this.id = id;
-   }
- 
+  }
+
 }

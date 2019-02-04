@@ -11,16 +11,15 @@ import { AuthService } from '../auth.service';
 export class NewsComponent implements OnInit {
 
   id: any;
-  languageCode: any;
+  keyword:any;
+  value:any;
   articleList: any[];
-  articles: any;
-  favouriteArticle: any;
   favoriteArticleId: any;
 
   ngOnInit() {
     this.id = this.service.getUserId()
     console.log(this.id);
-    this.newsApi.initSources().subscribe(data => {
+    this.newsApi.getArticles().subscribe(data => {
       console.log(data)
       this.articleList = data.articles;
     })
@@ -28,6 +27,16 @@ export class NewsComponent implements OnInit {
 
   constructor(private newsApi: NewsApiService, private service: AuthService) { }
 
+  search(){
+    console.log(this.keyword);
+    this.newsApi.searchArticles(this.keyword).subscribe(
+      data => {
+        console.log(data)
+        this.value = data['articles'];
+      }
+    );
+  }
+  
   saveArticle(articleTitle) {
     this.articleList.forEach(favoriteArticle => {
       if (favoriteArticle.title == articleTitle) {

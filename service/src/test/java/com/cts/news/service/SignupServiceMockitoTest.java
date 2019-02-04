@@ -1,8 +1,6 @@
 package com.cts.news.service;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import org.junit.Before;
@@ -17,8 +15,8 @@ import com.cts.news.bean.SignupStatus;
 import com.cts.news.bean.User;
 import com.cts.news.repository.UserRepository;
 
-public class UserServiceTest {
-	private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceTest.class);
+public class SignupServiceMockitoTest {
+	private static final Logger LOGGER = LoggerFactory.getLogger(SignupServiceMockitoTest.class);
 
 	@Mock
 	private UserRepository userRepository;

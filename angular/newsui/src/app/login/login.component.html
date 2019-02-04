@@ -7,17 +7,20 @@
       <form [formGroup]="form">
 
         <div class="form-group">
-          <input type="text" class="form-control" id="loginemail" name="email" placeholder="Email" #email>
+          <input type="text" class="form-control" formControlName="email" id="loginemail" placeholder="Email" #email>
           <div *ngIf="form.get('email').touched && form.get('email').invalid">
             <div *ngIf="form.get('email').errors.required" class="alert alert-danger">Email is mandatory</div>
+             <div *ngIf="form.get('email').errors.pattern" class="alert alert-danger" >Provide valid pattern ex-abc@email.com</div>
           </div>
 
         </div>
 
         <div class="form-group">
-          <input type="password" class="form-control" id="loginpassword" name="password" placeholder="Password" #password>
+          <input type="password" class="form-control" formControlName="password" id="loginpassword" placeholder="Password" #password>
           <div *ngIf="form.get('password').touched && form.get('password').invalid">
             <div *ngIf="form.get('password').errors.required" class="alert alert-danger">Password is mandatory</div>
+             <div *ngIf="form.get('password').errors.minlength" class="alert alert-danger" >Password should be minimum 6 digits</div>
+              <div *ngIf="form.get('password').errors.maxlength" class="alert alert-danger" >Password should be maximum 50 digits</div>
           </div>
         </div>
 

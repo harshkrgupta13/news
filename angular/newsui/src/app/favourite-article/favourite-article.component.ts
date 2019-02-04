@@ -13,10 +13,10 @@ export class FavouriteArticleComponent implements OnInit {
 
   id: any;
   user: any;
-  articleList: any[];
-  articles: any;
+  //articleList: any[];
+  //articles: any;
   favouriteArticle: any;
-  favoriteArticleId: any;
+  //favoriteArticleId: any;
 
   ngOnInit() {
     this.id = this.service.getUserId();

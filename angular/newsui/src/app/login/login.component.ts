@@ -18,14 +18,14 @@ export class LoginComponent implements OnInit {
   languageCode: any;
   form = new FormGroup({
     email: new FormControl(
-       'harsh@gmail.com',
+       '',
       [ Validators.required,
         Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'),
         Validators.maxLength(255),
       ]
     ),
     password: new FormControl(
-      '123456',
+      '',
       [ Validators.required,
         Validators.minLength(6),
         Validators.maxLength(50)]
@@ -60,9 +60,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/searchnews']);
 
         }
-        if (data.user.role.id == 1) {
-          console.log(this.service.loggedIn);
-          this.service.login();
+        if (data.admin) {
           this.router.navigate(['/search']);
         }
 

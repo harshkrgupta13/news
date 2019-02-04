@@ -1,14 +1,13 @@
 import { LoginPage } from './login.po';
 import { protractor, browser } from 'protractor';
+import { NewsPage } from '../news/news.po';
 import { SearchPage } from '../search/search.po';
-
-//import { ArticlePage } from '../article/article.po';
 
 describe('Login page', () => {
     let page: LoginPage;
+    let news = new NewsPage;
     let search = new SearchPage();
-    // tslint:disable-next-line:label-position
-    // let article = new ArticlePage();
+  
     const EC = protractor.ExpectedConditions;
 
     beforeEach(() => {
@@ -17,25 +16,24 @@ describe('Login page', () => {
     });
 
 
-    it('should be able to login', () => {
+    it('should be able to login as news analyst', () => {
         page.sendEmailForLogin().sendKeys('a@email.com');
         page.sendPasswordForLogin().sendKeys('111111');
         page.getLoginButton().click();
+        browser.wait(EC.visibilityOf(news.getTitle()));
+        expect(browser.driver.getCurrentUrl()).toContain('/searchnews');
+    });
+
+    it('should be not be able to login as an admin', () => {
+        page.sendEmailForLogin().sendKeys('admin@email.com');
+        page.sendPasswordForLogin().sendKeys('123456');
+        page.getLoginButton().click();
         browser.wait(EC.visibilityOf(search.getTitle()));
-        // browser.wait(EC.visibilityOf(article.getTitle()));
-        //expect(article.getTitle().isPresent()).toBeTruthy();
+        //browser.wait(EC.visibilityOf(page.getErrorMessage()));
         expect(browser.driver.getCurrentUrl()).toContain('/search');
     });
 
-    it('should be not be able to login if email is wrong', () => {
-        page.sendEmailForLogin().sendKeys('acvhnxc@email.com');
-        page.sendPasswordForLogin().sendKeys('11145435111');
-        page.getLoginButton().click();
-        //browser.wait(EC.visibilityOf(page.getErrorMessage()));
-        //expect(page.getErrorMessage().getText()).toBe('Invalid Email Id or Password.');
-    });
 });
-
 
 
 // https://trailheadtechnology.com/ui-automation-testing-of-angular-apps-using-protractor-jasmine/

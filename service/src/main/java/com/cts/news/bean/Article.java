@@ -33,7 +33,7 @@ public class Article {
 
 	@Column(name = "ar_content")
 	private String content;
-
+	
 	public Article(int id, String author, String title, String description, String url, String urlToImage,
 			String content) {
 		super();
@@ -106,7 +106,7 @@ public class Article {
 	public void setContent(String content) {
 		this.content = content;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Article [id=" + id + ", author=" + author + ", title=" + title + ", description=" + description

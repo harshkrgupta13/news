@@ -11,30 +11,31 @@ import { SearchService } from '../search.service';
 
 export class SearchComponent implements OnInit {
 
-  constructor(private analyst: SearchService, private router: Router) { }
-  analyst1: any;
+  constructor(private searchAnalyst: SearchService, private router: Router) { }
+  analyst: any;
   isUser = false;
-  analyst2: any;
 
   ngOnInit() {
   }
+
   get(email) {
-    this.analyst.search(email).subscribe(
+    this.searchAnalyst.search(email).subscribe(
       data => {
         if (data != null) {
           this.isUser = true;
-          this.analyst1 = data;
+          this.analyst = data;
         }
 
 
-        console.log(this.analyst1)
+        console.log(this.analyst)
       }
     );
   }
+  
   changeStatus(email) {
-    this.analyst.status(email).subscribe(
+    this.searchAnalyst.status(email).subscribe(
       data => {
-        this.analyst1 = data;
+        this.analyst = data;
       }
     )
 

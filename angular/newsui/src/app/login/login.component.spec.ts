@@ -6,7 +6,6 @@ import { By, BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginService } from '../login.service';
 import { HttpClientModule } from '@angular/common/http';
-import { NewsApiService } from '../news-api.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SignupComponent } from '../signup/signup.component';
 
@@ -51,13 +50,12 @@ fdescribe('LoginComponent', () => {
   });
 
   it('form should valid when field is not empty', async(() => {
-    //accessing controls
     component.form.controls['email'].setValue('harsh@gmail.com');
     component.form.controls['password'].setValue('harshg');
     expect(component.form.valid).toBeTruthy();
   }));
+  
   it('form should invalid when empty', async(() => {
-    //accessing controls
     component.form.controls['email'].setValue('');
     component.form.controls['password'].setValue('');
     expect(component.form.valid).toBeFalsy();
@@ -88,4 +86,5 @@ fdescribe('LoginComponent', () => {
     el.click();
     expect(component.check).toHaveBeenCalledTimes(1);
   }));
+  
 });

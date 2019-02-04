@@ -1,4 +1,4 @@
-package com.cts.news.controller;
+package com.cts.news.service;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
@@ -13,11 +13,11 @@ import org.slf4j.LoggerFactory;
 
 import com.cts.news.bean.AuthenticationStatus;
 import com.cts.news.bean.User;
-import com.cts.news.service.UserService;
+import com.cts.news.controller.UserController;
 
-public class UserControllerMockitoTest {
+public class LoginServiceMockitoTest {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(UserControllerMockitoTest.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(LoginServiceMockitoTest.class);
 
 	@Mock
 	private UserService userService;
@@ -61,7 +61,7 @@ public class UserControllerMockitoTest {
 		User user = new User();
 		user.setEmail("user@email.com");
 		User actualUser = new User();
-		actualUser.setEmail("vishal");
+		actualUser.setEmail("harsh");
 		actualUser.setPassword("password");
 		when(userService.getUser(user.getEmail())).thenReturn(actualUser);
 		AuthenticationStatus status = userController.authenticate(user).getBody();

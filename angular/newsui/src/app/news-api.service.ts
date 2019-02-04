@@ -25,7 +25,7 @@ export class NewsApiService {
 
   constructor(private http: HttpClient, private service: AuthService) { }
 
-  initSources(): Observable<any> {
+  getArticles(): Observable<any> {
     this.code = this.service.getLanguageCode();
     return this.http.get('https://newsapi.org/v2/top-headlines?language=' + this.code + '&apiKey=' + this.api_key);
   }
@@ -45,6 +45,11 @@ export class NewsApiService {
   deleteArticle(favoriteArticle) {
     console.log("inside delete article service")
     return this.http.post(this.deletefavoriteArticleUrl, favoriteArticle, httpOptions)
+
+  }
+
+   searchArticles(keyword) {
+    return this.http.get("https://newsapi.org/v2/everything?q=" + keyword + "&apiKey=" + this.api_key);
 
   }
 

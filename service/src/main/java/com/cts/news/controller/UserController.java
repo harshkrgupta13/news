@@ -59,7 +59,7 @@ public class UserController extends NewsController {
 		LOGGER.debug("From request (actualUser) : {}", actualUser);
 		if (actualUser != null) {
 			actualPassword = actualUser.getPassword();
-			if (email.equals("admin@email.com") && actualPassword.equals("123456")) {
+			if (email.equals("admin@email.com") && password.equals(actualPassword)) {
 				status.setUser(actualUser);
 				status.setAdmin(true);
 				status.setAuthenticated(true);
