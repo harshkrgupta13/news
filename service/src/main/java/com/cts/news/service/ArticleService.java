@@ -43,6 +43,16 @@ public class ArticleService {
 
 		if (actualArticle.getId() != 0) {
 			LOGGER.debug("Users favourite article  {}", actualUser.getArticle());
+		/*	actualUser.getArticle().add(actualArticle);
+			userRepository.save(actualUser);*/
+			List<Article> articles = actualUser.getArticle();
+			for (Article article1 : articles) {
+				if (article1.getId() == actualArticle.getId()) {
+					articles.remove(article1);
+
+				}
+
+			}
 			actualUser.getArticle().add(actualArticle);
 			userRepository.save(actualUser);
 		}

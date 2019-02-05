@@ -1,7 +1,10 @@
 package com.cts.news.controller;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -35,9 +38,9 @@ public class ArticleControllerTest {
 
 		LOGGER.info("Start");
 
-		String TEST_DATA = "{\"id\":\"4\"" + "," + "\"article\":[{\"title\":\"harsh\"" + ","
-				+ "\"author\":\"harsh\"" + "," + "\"description\":\"harsh\"" + "," + "\"content\":\"harsh\"" + ","
-				+ "\"url\":\"harsh\"" + "," + " \"urlToImage\":\"harsh\"}]}";
+		String TEST_DATA = "{\"id\":\"4\"" + "," + "\"article\":[{\"title\":\"harsh\"" + "," + "\"author\":\"harsh\""
+				+ "," + "\"description\":\"harsh\"" + "," + "\"content\":\"harsh\"" + "," + "\"url\":\"harsh\"" + ","
+				+ " \"urlToImage\":\"harsh\"}]}";
 
 		LOGGER.debug("test data:{}", TEST_DATA);
 
@@ -46,7 +49,7 @@ public class ArticleControllerTest {
 
 		LOGGER.info("End");
 	}
-	
+
 	@Test
 	public void testForDeleteFavouriteArticle() throws Exception {
 
@@ -62,6 +65,17 @@ public class ArticleControllerTest {
 		LOGGER.info("End");
 	}
 
-	
+	@Test
+	public void testForGettingUserDetails() throws Exception {
+
+		LOGGER.info("Start");
+
+		mockMvc.perform(get("/user/{id}", 1)).andExpect(status().isOk())
+				.andExpect(content().contentType("application/json;charset=UTF-8"))
+				.andExpect(jsonPath("$.name").value("Admin"));
+
+		LOGGER.info("End");
+
+	}
 
 }

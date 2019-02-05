@@ -16,7 +16,7 @@
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/searchnews']" class="a1">View Article </a> &nbsp;
           <a class="nav-link" [routerLink]="['/favourite']" class="a1"> View Favourite Articles </a> &nbsp;
-          <a class="nav-link" [routerLink]="['/login']" class="a1"> Logout </a>
+          <a class="nav-link" (click)="logout();" class="a2"> Logout </a>
         </li>
       </div>
 

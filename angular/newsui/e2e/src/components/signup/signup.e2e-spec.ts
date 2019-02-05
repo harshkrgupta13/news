@@ -17,7 +17,7 @@ describe('Signup page', () => {
         page.sendPasswordForSignup().sendKeys('654321');
         page.sendLanguageId().sendKeys("English");
         page.getSignupButton().click();
-        expect(browser.driver.getCurrentUrl()).toContain('');
+      //expect(browser.driver.getCurrentUrl()).toContain('');
     }); 
     
 });

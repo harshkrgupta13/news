@@ -2,7 +2,8 @@ package com.cts.news.service;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
-
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -35,34 +36,34 @@ public class SignupServiceMockitoTest {
 		SignupStatus expectedStatus = new SignupStatus();
 		expectedStatus.setSignupStatus(true);
 		User user = new User();
-		user.setEmail("bjsvdfhs@gmail.com");
+		user.setEmail("bs@gmail.com");
 		when(userRepository.findByEmail(user.getEmail())).thenReturn(null);
 		when(userRepository.save(user)).thenReturn(user);
 		SignupStatus actualStatus = userService.saveUser(user);
 		assertEquals(true, expectedStatus.equals(actualStatus));
 		LOGGER.debug("actualStatus :{}", actualStatus);
-		/*verify(userRepository, times(1)).findByEmail(user.getEmail());
-		verify(userRepository, times(1)).save(user);*/
+		/*verify(userRepository,times(1)).findByEmail(user.getEmail());
+		verify(userRepository,times(1)).save(user);*/
 		LOGGER.info("End");
 
 	}
 
-	/*@Test
-	public void unSuccessfullSignupTest() {
+	@Test
+	public void unSuccessfullSignupTest(){
 		LOGGER.info("Start");
-		SignupStatus expectedStatus = new SignupStatus();
+		SignupStatus expectedStatus= new SignupStatus();
 		expectedStatus.setSignupStatus(false);
 		User user = new User();
-		user.setEmail("bjsvdfhs@gmail.com");
+		user.setEmail("bjsvdddfhs@gmail.com");
 		when(userRepository.findByEmail(user.getEmail())).thenReturn(user);
 		when(userRepository.save(user)).thenReturn(user);
-		SignupStatus actualStatus = userService.saveUser(user);
-		assertEquals(true, expectedStatus.equals(actualStatus));
+		SignupStatus actualStatus= userService.saveUser(user);
+		assertEquals(false, expectedStatus.equals(actualStatus));
 		LOGGER.debug("actualStatus :{}", actualStatus);
-		verify(userRepository, times(0)).save(user);
-		verify(userRepository, times(1)).findByEmail(user.getEmail());
+		/*Mockito.verify(userRepository).save(user);
+		Mockito.verify(userRepository).findByEmail(user.getEmail());*/
 		LOGGER.info("End");
-
-	}*/
+		
+	}
 
 }

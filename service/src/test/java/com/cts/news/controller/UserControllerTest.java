@@ -55,7 +55,7 @@ public class UserControllerTest {
 	}
 
 	@Test
-	public void loginControllerTestForNullEmail() throws Exception {
+	public void loginControllerTestForEmptyEmail() throws Exception {
 
 		LOGGER.info("Start");
 		String TEST_DATA = "{ \"password\":\"abcabc\"}";
@@ -67,7 +67,7 @@ public class UserControllerTest {
 	}
 
 	@Test
-	public void loginControllerTestForNullPassword() throws Exception {
+	public void loginControllerTestForEmptyPassword() throws Exception {
 
 		LOGGER.info("Start");
 		String TEST_DATA = "{ \"email\":\"abc@email.com\"}";
@@ -93,7 +93,7 @@ public class UserControllerTest {
 	}
 
 	@Test
-	public void signupControllerTestrForNullObject() throws Exception {
+	public void signupControllerTestrForEmptyFields() throws Exception {
 
 		LOGGER.info("Start");
 		String TEST_DATA = "{}";
@@ -105,7 +105,7 @@ public class UserControllerTest {
 
 	@Test
 	public void signupControllerTestForPreExistingEmailId() throws Exception {
-		LOGGER.info("Start: inside signupControllerTestForPreExistingEmailId()");
+		LOGGER.info("Start");
 		String TEST_DATA = "{\"name\":\"HarshGupta\"" + "," + "\"language\":{\"id\":\"1\"}" + ","
 				+ "\"role\":{\"id\":\"2\"}" + "," + "\"email\":\"har@gmail.com\"" + ","
 				+ "\"password\":\"harshgupta\"}";
@@ -116,7 +116,7 @@ public class UserControllerTest {
 	}
 
 	@Test
-	public void signupControllerTestForNullName() throws Exception {
+	public void signupControllerTestForEmptyName() throws Exception {
 
 		LOGGER.info("Start");
 
@@ -131,9 +131,9 @@ public class UserControllerTest {
 	}
 
 	@Test
-	public void signupControllerTestForNullPassword() throws Exception {
+	public void signupControllerTestForEmptyPassword() throws Exception {
 
-		LOGGER.info("Start: inside testUserControllerForNullPassword()");
+		LOGGER.info("Start");
 		String TEST_DATA = "{\"name\":\"harshg\"" + "," + "\"language\":{\"id\":\"1\"}" + ","
 				+ "\"role\":{\"id\":\"2\"}" + "," + "\"email\":\"h@gmail.com\"}";
 
@@ -144,7 +144,7 @@ public class UserControllerTest {
 	}
 
 	@Test
-	public void signupControllerTestForNullEmail() throws Exception {
+	public void signupControllerTestForEmptyEmail() throws Exception {
 
 		LOGGER.info("Start");
 		String TEST_DATA = "{\"name\":\"harsh\"" + "," + "\"language\":{\"id\":\"1\"}" + "," + "\"role\":{\"id\":\"2\"}"
@@ -186,9 +186,9 @@ public class UserControllerTest {
 	}
 
 	@Test
-	public void testUserControllerInvalidEmailFormat() throws Exception {
+	public void signupControllerInvalidEmailFormat() throws Exception {
 
-		LOGGER.info("Start: inside signupControllerTestForEmailSize()");
+		LOGGER.info("Start");
 		String TEST_DATA = "{\"name\":\"Harsh\"" + "," + "\"language\":{\"id\":\"1\"}" + "," + "\"role\":{\"id\":\"2\"}"
 				+ "," + "\"email\":\"vgfysygfsyhgfyshgfyusgfhxzbcshgfyudsadcgfhfxchfgyugfyusgfhfhfhb"
 				+ "cbdgdgfszfszfszdfdgxdgdzfszffsbcdzhjbsfyusgfuysgfusfjzhbchjbsfsfhsufhjncisf"
@@ -202,19 +202,6 @@ public class UserControllerTest {
 		mockMvc.perform(post("/user/save").content(TEST_DATA).contentType("application/json;charset=UTF-8"))
 				.andExpect(status().is4xxClientError()).andExpect(
 						jsonPath("$.errorMessage").value("Invalid input format: Email must not exceed 255 characters"));
-		LOGGER.info("End: signupControllerTestForEmailSize()");
-	}
-
-	@Test
-	public void signupControllerTestForEmailPattern() throws Exception {
-
-		LOGGER.info("Start");
-		String TEST_DATA = "{\"name\":\"Harsh\"" + "," + "\"language\":{\"id\":\"1\"}" + "," + "\"role\":{\"id\":\"2\"}"
-				+ "," + "\"email\":\"harshgmail\"" + "," + "\"password\":\"harshg\"}";
-		LOGGER.debug("test data:{}", TEST_DATA);
-		mockMvc.perform(post("/user/save").content(TEST_DATA).contentType("application/json;charset=UTF-8"))
-				.andExpect(status().is4xxClientError())
-				.andExpect(jsonPath("$.errorMessage").value("Invalid input format: Email address is invalid"));
 		LOGGER.info("End");
 	}
 
