@@ -17,6 +17,7 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
   }
+  
 
   get(email) {
     this.searchAnalyst.search(email).subscribe(

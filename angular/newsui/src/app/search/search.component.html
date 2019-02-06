@@ -20,8 +20,8 @@
       <h5> Name : {{analyst.name}} </h5>
       <h5> Email : {{analyst.email}} </h5>
       <h5> Language : {{analyst.language.name}}</h5>
-      <h5> Blacklisted : {{analyst.blacklisted}}</h5>
-      <button class="btn btn-danger" (click)="changeStatus(analyst.email)"> Block </button>
+   <!--   <h5> Blacklisted : {{analyst.blacklisted}}</h5>-->
+      <button class="btn btn-danger" (click)="changeStatus(analyst.email)"> Unblock </button>
 
     </div>
 
@@ -32,8 +32,8 @@
       <h5> Name : {{analyst.name}} </h5>
       <h5> Email : {{analyst.email}} </h5>
       <h5> Language : {{analyst.language.name}}</h5>
-      <h5> Blacklisted : {{analyst.blacklisted}}</h5>
-      <button class="btn btn-success" (click)="changeStatus(analyst.email)"> Unblock </button>
+    <!--  <h5> Blacklisted : {{analyst.blacklisted}}</h5>-->
+      <button class="btn btn-success" (click)="changeStatus(analyst.email)"> Block </button>
 
     </div>
     <div class="col-lg-4"></div>

@@ -4,8 +4,9 @@ import { By, BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
-import { DebugElement } from '@angular/core';
+import { DebugElement, OnInit } from '@angular/core';
 import { Routes } from '@angular/router';
+import { of } from 'rxjs';
 import { SignupService } from '../signup.service';
 
 fdescribe('SignupComponent', () => {
@@ -13,6 +14,8 @@ fdescribe('SignupComponent', () => {
   let fixture: ComponentFixture<SignupComponent>;
   let de: DebugElement;
   let el: HTMLElement;
+
+  let signupService : SignupService;
 
 
  beforeEach(async(() => {
@@ -74,10 +77,30 @@ fdescribe('SignupComponent', () => {
     expect(component.form.controls['password'].valid).toBeFalsy();
   }));
 
-   it('is form invalid when password character more than 50', async(() => {
+   it('form invalid when password character more than 50', async(() => {
     component.form.controls['password'].setValue('xfhszdgsdzgdgsdfdsdgbsdzgsgsdgdvsdgvdgvdgdgvdgvdgvbdgvbdsdfsadfsafdsffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff');
     expect(component.form.valid).toBeFalsy();
     expect(component.form.controls['password'].valid).toBeFalsy();
   }));
+
+ /* it('should call the signup method', async(() => {
+    fixture.detectChanges();
+    spyOn(component, 'signup');
+    el = fixture.debugElement.query(By.css('button')).nativeElement;
+    el.click();
+    expect(component.signup).toHaveBeenCalledTimes(1);
+  }));*/
+
+  it('should call signup method', async(() => {
+    signupService= fixture.debugElement.injector.get(SignupService)
+     let data : any = JSON.parse(JSON.stringify({
+      signupStatus:true
+    })) 
+    
+    spyOn(signupService, 'signup').and.returnValue(of(data));
+    component.signup();
+
+    //expect(component.message).toBe(true);
+  }))
 
 });

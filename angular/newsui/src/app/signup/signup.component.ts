@@ -46,6 +46,7 @@ export class SignupComponent implements OnInit {
   }
 message=false;
 status:any
+
   signup(){
     console.log(this.form.value);
      this.signupService.signup(JSON.stringify({

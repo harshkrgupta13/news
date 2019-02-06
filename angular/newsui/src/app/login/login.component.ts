@@ -49,8 +49,9 @@ export class LoginComponent implements OnInit {
         console.log("incoming Data: " + data.user.language.languageCode)
         console.log("incoming Data: " + data.authenticated)
         console.log("incoming admin or not? : " + data.admin)
+        console.log(!data.user.blacklisted)
 
-        if (data.authenticated && data.user.blacklisted) {
+        if (data.authenticated) {
           this.service.login();
           this.languageCode = data.user.language.languageCode;
           this.newsApi.languageCode = this.languageCode;

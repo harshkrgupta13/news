@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+
+  web:
+    depends_on:
+      - db
+    build: .
+    ports:
+      - "8080:8080"
+    links:
+      - db
+
+  db:
+    build: ./database
+#    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root

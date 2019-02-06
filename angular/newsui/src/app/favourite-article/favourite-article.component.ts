@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NewsApiService } from '../news-api.service';
-import { AuthService } from '../auth.service';
+import { AuthService } from './../auth.service';
+import { NewsApiService } from './../news-api.service';
 
 @Component({
   selector: 'app-favourite-article',
