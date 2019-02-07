@@ -15,16 +15,17 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cts.news.bean.AuthenticationStatus;
 import com.cts.news.bean.SignupStatus;
 import com.cts.news.bean.User;
+import com.cts.news.security.JwtGenerator;
 import com.cts.news.service.UserService;
 
 @RestController
-@RequestMapping("/user")
 public class UserController extends NewsController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
 	private UserService userService;
-
+    @Autowired
+	private JwtGenerator jwtGenerator;
 	@Autowired
 	public void setUserService(UserService userService) {
 		this.userService = userService;
@@ -68,6 +69,10 @@ public class UserController extends NewsController {
 				status.setUser(actualUser);
 				status.setAuthenticated(actualEmail.equals(email));
 				status.setAuthenticated(actualPassword.equals(password));
+			}
+			LOGGER.debug("Value of status: {} ", status.isAuthenticated());
+			if(status.isAuthenticated()){
+				status.setToken(jwtGenerator.generate(status.getUser()));
 			}
 		}
 		LOGGER.debug("Value of actualPassword: {} ", actualPassword);

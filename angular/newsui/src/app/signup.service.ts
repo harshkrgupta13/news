@@ -16,7 +16,7 @@ const httpOptions = {
 export class SignupService {
 
   constructor(private http: HttpClient) { }
-   saveUrl: string="/news-service/user/save"
+   saveUrl: string="/news-service/save"
    getLang: string="/news-service/getLanguages"
 
   signup(json):Observable<any>{

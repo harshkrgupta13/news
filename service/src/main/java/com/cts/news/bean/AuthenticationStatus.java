@@ -5,6 +5,15 @@ public class AuthenticationStatus {
 	private boolean authenticated;
 	private boolean isAdmin;
 	private User user;
+	private String token;
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
 
 	public AuthenticationStatus() {
 		super();
@@ -42,7 +51,9 @@ public class AuthenticationStatus {
 
 	@Override
 	public String toString() {
-		return "AuthenticationStatus [authenticated=" + authenticated + ", isAdmin=" + isAdmin + ", user=" + user + "]";
+		return "AuthenticationStatus [authenticated=" + authenticated + ", isAdmin=" + isAdmin + ", user=" + user
+				+ ", token=" + token + "]";
 	}
 
+	
 }

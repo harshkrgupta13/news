@@ -14,9 +14,9 @@ const httpOptions = {
 })
 export class NewsApiService {
 
-  savefavoriteArticleUrl = "/news-service/saveArticle"
-  getUserUrl = "/news-service/user/"
-  deletefavoriteArticleUrl = "/news-service/delete"
+  savefavoriteArticleUrl = "/news-service/user/saveArticle"
+  getUserUrl = "/news-service/user/user/"
+  deletefavoriteArticleUrl = "/news-service/user/delete"
 
   languageCode: any;
   code: any;

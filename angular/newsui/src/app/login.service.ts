@@ -14,7 +14,7 @@ const httpOptions = {
 })
 export class LoginService {
 
-  url : string="/news-service/user/authenticate"
+  url : string="/news-service/authenticate"
 
   constructor(private http: HttpClient) { }
 

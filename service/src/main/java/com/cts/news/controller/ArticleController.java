@@ -7,12 +7,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cts.news.bean.User;
 import com.cts.news.service.ArticleService;
 
 @RestController
+@RequestMapping("/user")
 public class ArticleController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ArticleController.class);

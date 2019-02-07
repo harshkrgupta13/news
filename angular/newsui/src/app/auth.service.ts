@@ -8,6 +8,7 @@ export class AuthService {
   languageCode: any;
   loggedIn: boolean;
   id: any;
+  token: any;
 
   constructor() { }
 
@@ -15,7 +16,12 @@ export class AuthService {
     console.log("Inside auth service login()");
     this.loggedIn = true;
   }
-
+  getToken() {
+    return this.token;
+  }
+  setToken(token : string) {
+    this.token = token;
+  }
   logout() {
     console.log("Inside auth service logout()");
     this.loggedIn = false;

@@ -56,6 +56,7 @@ export class LoginComponent implements OnInit {
           this.languageCode = data.user.language.languageCode;
           this.newsApi.languageCode = this.languageCode;
           this.service.setUserId(data.user.id);
+          this.service.setToken(data.token);
           this.languageCode = this.service.setLanguageCode(this.languageCode);
           console.log(this.newsApi.languageCode)
           this.router.navigate(['/searchnews']);
